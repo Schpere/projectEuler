@@ -18,12 +18,12 @@ def sieve(n):
     return filter(lambda x : x != 0, primeNumbers)
 
 def get_primes():
-    prime_list = sieve(100)
+    prime_list = sieve(1000)
     for i in prime_list:
         yield i
     n = prime_list[-1] + 2
     while True:
-        for i in prime_list:
+        for i in takewhile(lambda x : x <= n**.5, prime_list):
             if n % i == 0:
                 break
         else:
@@ -84,6 +84,15 @@ def primeQ(n):
         if jacobiSym(a,n) % n != pow(a,(n-1)/2,n):
             return False
     return True
+
+def lcm_upto(n):
+    product = 1
+    for p in takewhile(lambda x : x <= n,get_primes()):
+        i = 1
+        while p**(i+1) <= n:
+            i += 1
+        product *= p**i
+    return product
 
 #########################################################
 #                                                       #
