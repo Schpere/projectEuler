@@ -1,7 +1,35 @@
+from itertools import takewhile,ifilter
 from random import randrange
 from random import sample
 
-primes = [2,3,5,7]
+#########################################################
+#                                                       #
+# Prime numbers and number theory                       #
+#                                                       #
+#########################################################
+
+def sieve(n):
+    primeNumbers = range(n)
+    primeNumbers[1] = 0
+    for i in xrange(len(primeNumbers)):
+        if primeNumbers[i] != 0:
+            for k in xrange(2*i,n,i):
+                primeNumbers[k] = 0
+    return filter(lambda x : x != 0, primeNumbers)
+
+def get_primes():
+    prime_list = sieve(100)
+    for i in prime_list:
+        yield i
+    n = prime_list[-1] + 2
+    while True:
+        for i in prime_list:
+            if n % i == 0:
+                break
+        else:
+            prime_list.append(n)
+            yield n
+        n += 2
 
 def legendreSym(a,p):
     a = a % p
@@ -32,6 +60,7 @@ def jacobiSym(a,n):
             if (a % 4 == n % 4 == 3):
                 fortegn *= -1
             a,n = n%a,a
+    primes = [2,3,5,7]
     if n in primes:
         return fortegn * legendreSym(a,n)
     expon = [0,0,0,0]
@@ -44,14 +73,26 @@ def jacobiSym(a,n):
     return fortegn
 
 def primeQ(n):
-    if n < 2**40:
+    if n < 2**20:
         a_list = sample(range(2,n), min(n,10))
         for a in a_list:
             if jacobiSym(a,n) % n != pow(a,(n-1)/2,n):
                 return False
         return True
-    for i in range(100):
+    for _ in range(100):
         a = randrange(n)
         if jacobiSym(a,n) % n != pow(a,(n-1)/2,n):
             return False
     return True
+
+#########################################################
+#                                                       #
+# Special sequences and miscellania                     #
+#                                                       #
+#########################################################
+
+def fibonacci(n):
+    f_1,f_2 = 1,1
+    while f_1 < n:
+        yield f_1
+        f_1,f_2 = f_2,f_1+f_2 
