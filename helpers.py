@@ -31,10 +31,36 @@ def get_primes():
             yield n
         n += 2
 
+def primeFactor(n):
+    if primeQ(n):
+        return [n,1]
+    primes = sieve(n)
+    factors = list()
+    for p in primes:
+        if n % p == 0:
+            i = 1
+            while n % pow(p,i+1) == 0:
+                i += 1
+            factors.append(p)
+            factors.append(i)
+            n /= pow(p,i)
+            if n == 1:
+                break
+    return factors
+
+def numFactors(n):
+    if n == 1:
+        return 1
+    factors = 1
+    prime_exponents = primeFactor(n)
+    for i in prime_exponents[1::2]:
+        factors *= (i+1)
+    return factors
+
 def legendreSym(a,p):
     a = a % p
     if a == 0: return 0
-    if p in primes:
+    if p in get_primes():
         quads = [i**2 % p for i in range(1,int(p/2) + 1)]
         if a in quads: return 1
         return -1
@@ -74,7 +100,7 @@ def jacobiSym(a,n):
 
 def primeQ(n):
     if n < 2**20:
-        a_list = sample(range(2,n), min(n,10))
+        a_list = sample(range(2,n), min(n-2,10))
         for a in a_list:
             if jacobiSym(a,n) % n != pow(a,(n-1)/2,n):
                 return False
