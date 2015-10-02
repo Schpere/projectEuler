@@ -1,12 +1,1 @@
-total = 0
-
-for i in range(int(1000/3)+1):
-    total += 3*i
-
-for i in range(int(1000/5)):
-    total += 5*i
-
-for i in range(int(1000/15)+1):
-    total -= 15*i
-
-print total
+print 3*333*334/2 + 5*199*100 - 15*round(1000/30)*round(1000/15+1)
