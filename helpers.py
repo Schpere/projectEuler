@@ -17,8 +17,22 @@ def sieve(n):
                 primeNumbers[k] = 0
     return filter(lambda x : x != 0, primeNumbers)
 
-def get_primes():
+def get_primes_w_sieve():
     prime_list = sieve(1000)
+    for i in prime_list:
+        yield i
+    n = prime_list[-1] + 2
+    while True:
+        for i in takewhile(lambda x : x <= n**.5, prime_list):
+            if n % i == 0:
+                break
+        else:
+            prime_list.append(n)
+            yield n
+        n += 2
+
+def get_primes():
+    prime_list = [2,3]
     for i in prime_list:
         yield i
     n = prime_list[-1] + 2
@@ -34,9 +48,9 @@ def get_primes():
 def primeFactor(n):
     if primeQ(n):
         return [n,1]
-    primes = sieve(n)
+#    primes = sieve(n)
     factors = list()
-    for p in primes:
+    for p in get_primes():
         if n % p == 0:
             i = 1
             while n % pow(p,i+1) == 0:
