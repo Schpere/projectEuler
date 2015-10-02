@@ -1,10 +1,8 @@
-from helpers import sieve,primeQ
-primes = sieve(1000000)
+from helpers import numFactors
 n = 1
 divisors = 0
 n_2 = 0
 
-<<<<<<< HEAD
 while divisors <= 500:
     if n % 2 == 0:
         n_1,n_2 = n_2,numFactors(n+1)
