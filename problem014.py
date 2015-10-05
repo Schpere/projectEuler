@@ -30,11 +30,6 @@ while counter < 1E6 and que:
     if node.leftchild.value < 1E6: counter += 1
     if node.leftchild.value < 1E3: que.append(node.leftchild)
 
-
-
-print [i for i, e in enumerate(lengths) if e != 0]
-
-
 maximus = longest.level
 longValue = longest.value
 
