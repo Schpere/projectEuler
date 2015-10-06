@@ -6,12 +6,12 @@ def isLeapyear(year):
 
 day = 365 + isLeapyear(1990)
 months = [31,(28,29),31,30,31,30,31,31,30,31,30,31]
-year = 1900
+year = 1901
 month = 0
 dayOfMonth = 0
 
 while year <= 2000:
-    if day % 8 == 7 and dayOfMonth == 0:
+    if day % 7 == 6 and dayOfMonth == 0:
         countSundays += 1
     day += 1
     if month != 1:

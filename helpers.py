@@ -48,7 +48,6 @@ def get_primes():
 def primeFactor(n):
     if primeQ(n):
         return [n,1]
-#    primes = sieve(n)
     factors = list()
     for p in get_primes():
         if n % p == 0:
@@ -61,6 +60,12 @@ def primeFactor(n):
             if n == 1:
                 break
     return factors
+
+def properFactors(n):
+    if n == 1 or primeQ(n): yield 1
+    for i in range(1,n/2+1):
+        if n % i == 0:
+            yield i
 
 def numFactors(n):
     if n == 1:
