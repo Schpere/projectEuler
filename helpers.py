@@ -62,10 +62,16 @@ def primeFactor(n):
     return factors
 
 def properFactors(n):
-    if n == 1 or primeQ(n): yield 1
-    for i in range(1,n/2+1):
-        if n % i == 0:
-            yield i
+    if n == 1:
+        return [1]
+    else:
+        factors = []
+        for i in xrange(1,int(n**.5)+1):
+            if n % i == 0:
+                if i not in factors: factors.append(i)
+                if i > 1 and n/i not in factors: factors.append(n/i)
+    factors.sort()
+    return factors
 
 def numFactors(n):
     if n == 1:
@@ -138,6 +144,13 @@ def lcm_upto(n):
             i += 1
         product *= p**i
     return product
+
+#########################################################
+#                                                       #
+# Sorting                                               #
+#                                                       #
+#########################################################
+
 
 #########################################################
 #                                                       #
