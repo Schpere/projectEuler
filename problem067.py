@@ -1,6 +1,6 @@
 tree = list()
 
-pyramid = open('problem018.txt','r')
+pyramid = open('problem067.txt','r')
 for line in pyramid:
     tree.append([int(i) for i in line.split(' ')])
 
