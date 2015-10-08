@@ -18,7 +18,7 @@ def sieve(n):
     return filter(lambda x : x != 0, primeNumbers)
 
 def get_primes_w_sieve():
-    prime_list = sieve(1000)
+    prime_list = sieve(1000000)
     for i in prime_list:
         yield i
     n = prime_list[-1] + 2
@@ -49,7 +49,7 @@ def primeFactor(n):
     if primeQ(n):
         return [n,1]
     factors = list()
-    for p in get_primes():
+    for p in (get_primes() if n < 10000 and get_primes_w_sieve() if n >= 100000):
         if n % p == 0:
             i = 1
             while n % pow(p,i+1) == 0:
