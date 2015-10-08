@@ -1,8 +1,9 @@
 from itertools import takewhile
-from helpers import properFactors,primeQ
+from helpers import properFactors
 
 def isAbundant(i):
     if sum(properFactors(i)) > i: return True
+    return False
 
 numbers = [12]
 i = 13
