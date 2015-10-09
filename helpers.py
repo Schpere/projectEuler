@@ -49,7 +49,7 @@ def primeFactor(n):
     if primeQ(n):
         return [n,1]
     factors = list()
-    for p in (get_primes() if n < 10000 and get_primes_w_sieve() if n >= 100000):
+    for p in get_primes_w_sieve():
         if n % p == 0:
             i = 1
             while n % pow(p,i+1) == 0:
