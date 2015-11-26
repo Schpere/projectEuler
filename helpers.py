@@ -1,6 +1,6 @@
 from itertools import takewhile,ifilter
-from random import randrange
-from random import sample
+from random import randrange,sample
+from math import ceil 
 
 #########################################################
 #                                                       #
@@ -144,6 +144,20 @@ def lcm_upto(n):
             i += 1
         product *= p**i
     return product
+
+def factorFermat(n):
+    N = n**.5
+    if N % 1 == 0.0:
+        return [int(N),2]
+    N,i,t = ceil(N),1,0
+    while t == 0:
+        sigmaSquare = (N + i)**2 - n
+        if sigmaSquare**.5 % 1 == 0.0:
+            t = N + i
+            s = sigmaSquare**.5
+        i += 1
+    return [int(t+s),1,int(t-s),1]
+
 
 #########################################################
 #                                                       #
