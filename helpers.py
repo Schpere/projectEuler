@@ -8,6 +8,13 @@ from math import ceil
 #                                                       #
 #########################################################
 
+def gcd(a,b):
+    while a > 0:
+        r = b % a
+        b = a
+        a = r
+    return b
+
 def sieve(n):
     primeNumbers = range(n)
     primeNumbers[1] = 0
